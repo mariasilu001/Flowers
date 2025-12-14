@@ -6,7 +6,7 @@ async function testConnection() {
     try {
         // Пытаемся получить данные из таблицы 'todos' (которую видно на твоём скриншоте)
         const { data, error } = await supabase
-            .from("todos") // Выбираем таблицу todos
+            .from("users") // Выбираем таблицу todos
             .select("*") // Выбираем все колонки (*)
             .limit(5); // Ограничиваем 5 записями
 
