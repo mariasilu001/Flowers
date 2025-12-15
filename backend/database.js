@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/../.env' });
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
 // Создаём экземпляр Sequelize, передавая строку подключения из .env
@@ -23,6 +23,6 @@ async function testConnection() {
   }
 }
 
-testConnection();
+//testConnection();
 
 module.exports = sequelize;
