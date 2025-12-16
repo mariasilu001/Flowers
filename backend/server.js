@@ -1,5 +1,6 @@
 const express = require("express");
 const { User } = require("./models/index.js");
+const authRouter = require("./routers/authRouter.js");
 
 const app = express();
 
@@ -12,6 +13,16 @@ app.get("/", async (req, res) => {
         },
     });
     res.json({ message: "Server works!!!", user: user });
+});
+
+app.use("/auth", authRouter);
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({
+        status: "error",
+        message: err.message,
+    });
 });
 
 app.listen(3000, () => {
