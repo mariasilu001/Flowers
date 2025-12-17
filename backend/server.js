@@ -2,6 +2,7 @@ const express = require("express");
 const { User } = require("./models/index.js");
 const authRouter = require("./routers/authRouter.js");
 const categoryRouter = require("./routers/categoryRouter.js");
+const productRouter = require("./routers/productRouter.js");
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.get("/", async (req, res) => {
 app.use("/auth", authRouter);
 
 app.use("/categories", categoryRouter);
+
+app.use("/products", productRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
