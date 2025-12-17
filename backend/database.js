@@ -9,8 +9,8 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
             require: true,
             rejectUnauthorized: false, // Важно для Supabase!
         },
-        statement_timeout: 10000, // 5000 миллисекунд = 5 секунд
-        query_timeout: 10000,
+        statement_timeout: 20000, // 5000 миллисекунд = 5 секунд
+        query_timeout: 20000,
     },
     pool: {
         max: 5,
