@@ -9,8 +9,16 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
             require: true,
             rejectUnauthorized: false, // Важно для Supabase!
         },
+        statement_timeout: 10000, // 5000 миллисекунд = 5 секунд
+        query_timeout: 10000,
     },
-    //logging: false  // Отключи логи SQL-запросов (или оставь console.log для отладки)
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+    },
+    logging: false, // Отключи логи SQL-запросов (или оставь console.log для отладки)
 });
 
 // Функция для проверки подключения
