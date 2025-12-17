@@ -1,9 +1,10 @@
 const { Router } = require("express");
+const categoryController = require("../controllers/categoryController");
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    return res.json({ message: "Categories API works!!!" });
-});
+router.get("/", categoryController.getAll);
+router.get("/:id", categoryController.getOne);
+router.get("/:id/products", categoryController.getProducts);
 
 module.exports = router;
