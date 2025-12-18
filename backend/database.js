@@ -1,3 +1,23 @@
+// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ LOCALHOST =============
+
+require("dotenv").config();
+
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize(
+    "flowers_shop",
+    "postgres",
+    process.env.DB_PASSWORD,
+    {
+      host: "localhost",
+      dialect: "postgres"
+    }
+);
+
+module.exports = sequelize;
+
+// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ SUPABASE =============
+/*
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
@@ -34,3 +54,4 @@ async function testConnection() {
 //testConnection();
 
 module.exports = sequelize;
+*/
