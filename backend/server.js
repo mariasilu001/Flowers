@@ -6,6 +6,7 @@ const productRouter = require("./routers/productRouter.js");
 const cartRouter = require("./routers/cartRouter.js");
 const orderRouter = require("./routers/orderRouter.js");
 const userRouter = require("./routers/userRouter.js");
+const favoriteController = require('./routers/favoriteRouter.js')
 
 const authToken = require("./middleware/authToken.js");
 
@@ -32,7 +33,9 @@ app.use("/cart", authToken, cartRouter);
 
 app.use("/orders", authToken, orderRouter);
 
-app.use("/users", userRouter);
+app.use("/users", authToken, userRouter);
+
+app.use("/favorites", authToken, favoriteController)
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

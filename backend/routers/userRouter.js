@@ -3,6 +3,6 @@ const userController = require("../controllers/userController");
 
 const router = Router();
 
-router.get("/:id", userController.getOnePublic);
+router.get("/me", userController.getOnePublic);
 
 module.exports = router;

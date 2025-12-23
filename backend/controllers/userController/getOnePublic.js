@@ -2,15 +2,11 @@ const { User } = require("../../models");
 
 module.exports = async (req, res, next) => {
     try {
-        const { id } = req.params;
-
-        if (!id) {
-            return res.status(400).json({ message: "no data" });
-        }
-
-        const user = await User.findByPk(id, {
+        //console.log(req.user)
+        const { userId } = req.user;
+        const user = await User.findByPk(userId, {
             attributes: {
-                exclude: ["passwordHash", "email", "phoneNumber", "roleId", "isDeleted"],
+                exclude: ["passwordHash", "roleId", "isDeleted"],
             },
         });
         if (!user) {
