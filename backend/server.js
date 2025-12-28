@@ -6,7 +6,8 @@ const productRouter = require("./routers/productRouter.js");
 const cartRouter = require("./routers/cartRouter.js");
 const orderRouter = require("./routers/orderRouter.js");
 const userRouter = require("./routers/userRouter.js");
-const favoriteController = require('./routers/favoriteRouter.js')
+const favoriteController = require("./routers/favoriteRouter.js");
+const otherRouter = require("./routers/otherRouter.js");
 
 const authToken = require("./middleware/authToken.js");
 
@@ -23,19 +24,21 @@ app.get("/", async (req, res) => {
     res.json({ message: "Server works!!!", user: user });
 });
 
-app.use("/auth", authRouter);
+app.use("/auth", authRouter); // направляет действие программы в authRouter в отдельном файле
 
-app.use("/categories", categoryRouter);
+app.use("/categories", categoryRouter); // направляет действие программы в categoryRouter в отдельном файле
 
-app.use("/products", productRouter);
+app.use("/products", productRouter); // направляет действие программы в productRouter в отдельном файле
 
-app.use("/cart", authToken, cartRouter);
+app.use("/cart", authToken, cartRouter); // направляет действие программы сначала в промежуточное ПО authToken, а потом в cartRouter в отдельном файле
 
-app.use("/orders", authToken, orderRouter);
+app.use("/orders", authToken, orderRouter); // направляет действие программы сначала в промежуточное ПО authToken, а потом в orderRouter в отдельном файле
 
-app.use("/users", authToken, userRouter);
+app.use("/users", authToken, userRouter); // направляет действие программы сначала в промежуточное ПО authToken, а потом в userRouter в отдельном файле
 
-app.use("/favorites", authToken, favoriteController)
+app.use("/favorites", authToken, favoriteController); // направляет действие программы сначала в промежуточное ПО authToken, а потом в favoriteController в отдельном файле
+
+app.use("/other", otherRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
