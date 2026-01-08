@@ -1,5 +1,5 @@
 const express = require("express");
-const { User } = require("./models/index.js");
+const { User, sequelize } = require("./models/index.js");
 const authRouter = require("./routers/authRouter.js");
 const categoryRouter = require("./routers/categoryRouter.js");
 const productRouter = require("./routers/productRouter.js");
@@ -47,6 +47,31 @@ app.use((err, req, res, next) => {
         message: err.message,
     });
 });
+
+/*/ ================= МАГИЯ ЗДЕСЬ =================
+const start = async () => {
+    try {
+        // sync() смотрит на твои модели и создает таблицы, если их нет
+        // { force: true } - УДАЛИТ все таблицы и создаст заново (ОПАСНО: данные сотрутся!)
+        // { alter: true } - Попытается изменить таблицы под модели, сохранив данные (но с SQLite это работает кривовато)
+        // Пусто (без параметров) - Создаст только те таблицы, которых нет.
+        
+        // Для первого запуска или когда ты меняешь структуру моделей, используй force: true (НО ТОЛЬКО ДЛЯ РАЗРАБОТКИ!)
+        await sequelize.sync({ force: true }); 
+        console.log("✅ Все таблицы успешно созданы!");
+
+        // Здесь можно вызвать функцию для заполнения начальными данными (сидинг)
+        // await seedData(); 
+
+        app.listen(3000, () => {
+            console.log("Server is running on http://localhost:3000");
+        });
+    } catch (e) {
+        console.error("❌ Ошибка при запуске сервера:", e);
+    }
+};
+
+start();*/
 
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");

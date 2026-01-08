@@ -1,5 +1,28 @@
-// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ LOCALHOST =============
+// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ SQLITE =============
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
 
+// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ SQLITE (ФАЙЛ) =============
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './database.sqlite', // Имя файла, где будет жить база
+    logging: false // Отключаем лишний шум в консоли
+});
+
+// Проверка подключения (сразу увидишь в терминале, что всё ок)
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log("✅ База данных (SQLite) подключена успешно!");
+    } catch (error) {
+        console.error("❌ Ошибка подключения к SQLite:", error);
+    }
+})();
+
+module.exports = sequelize;
+
+// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ LOCALHOST =============
+/*
 require("dotenv").config();
 
 const { Sequelize } = require("sequelize");
@@ -15,7 +38,7 @@ const sequelize = new Sequelize(
 );
 
 module.exports = sequelize;
-
+*/
 // ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ SUPABASE =============
 /*
 require("dotenv").config();
