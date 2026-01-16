@@ -2,11 +2,10 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
-// ============= ПОДКЛЮЧЕНИЕ ЧЕРЕЗ SQLITE (ФАЙЛ) =============
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './database.sqlite', // Имя файла, где будет жить база
-    logging: false // Отключаем лишний шум в консоли
+    logging: true // Отключаем лишний шум в консоли
 });
 
 // Проверка подключения (сразу увидишь в терминале, что всё ок)
